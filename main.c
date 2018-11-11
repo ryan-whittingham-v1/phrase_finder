@@ -1,85 +1,57 @@
 #include<stdio.h>
 #include<ctype.h>
+#include<string.h>
+
+struct phrase {
+	int phraseCount;
+	char phraseText[201];
+};
+
+int getPhrase(char *);
+int phraseCompare(struct phrase *, char *, int);
 
 int main(){
 
-
-	struct phrase {
-		int phraseCount;
-		char phraseText[201];
-	};
-	
 	struct phrase dictionary[1000];
 	
-	int i=0, j=0, c=1, k=0;
+	int c =0, i=0, k=0, r=0;
+	int ret = 0;
+	char tempPhrase[201];
 
-	/////////////////    Loop through file  /////////////////
-	while (c != EOF){
+	/////////////////  Loop through file  /////////////////
+	while (1==1){
 		
-		/////////////  get a character  ////////////////
-		c = getchar();
-		////////////////////////////////////////////////
-
-		///////   change to uppercase  /////////////////
-		c = toupper(c);
-		///////////////////////////////////////////////
-	
-		///////////  Remove extra spaces  ////////////
-		if (isspace(c) > 0){
-			c = ' ';
-		}
-		///////////////////////////////////////////////
+		//////////// get a phrase  ///////////
+		c=getPhrase(tempPhrase);
+		/////////////////////////////////////
 		
-		///////////////   start of phrase  //////////////
-		if (i==0){
-			dictionary[j].phraseText[i]='<';
-			if(c != ' '){
-				i++;
-				dictionary[j].phraseText[i]=c;
-				i++;
-			}
+		//////////  if end of file detected  /////////////
+		if (c == -1){
+			break;
 		}
-		//////////////////////////////////////////////////
-
-		///////////////////  end of phrase  //////////////
-		else if (c == '.' || c == ',' || c== ';' || c == ':' || c == '?' || c == '!'){
-			c='>';
-			dictionary[j].phraseText[i]=c;
-			dictionary[j].phraseText[i+1]='\0';
-			j++;
-			i=0;
-		}
+		//////////////////////////////////////////////
 		
-		////////////  ignore specific punctuation  ////////
-		else if (c == '(' || c == ')' || c == '\'' || c == '\"' || c == '-'){
-			//do nothing	
-		}
-		////////////////////////////////////////////////
+		///////////  compare phrase to existing phrases  /////////
+		r=phraseCompare(dictionary, tempPhrase, i);
+		/////////////////////////////////////////////////////////
 	
-		else{
-			dictionary[j].phraseText[i]=c;
-			i++;
+		if (r != 0){ // not a duplicate
+					
+		//////  store new phrase into the dictionary  /////////
+		strcpy(dictionary[i].phraseText, tempPhrase);
+		dictionary[i].phraseCount += 1;	
+		i++; //increment dicitonary index
+		/////////////////////////////////////////////////////////
 		}
-		//////////////////////////////////////////////////
-	}
-	//////////////////////////////////////////////////////////
-	
-	dictionary[j].phraseText[i-1]='\0';
+	}	
 
-	/////////////////////  print phrases  ///////////////////
-	while (k < j){
-		printf("Phrase %i = %s\n", k, dictionary[k].phraseText); 
-		k++;
+	/////////   print phrases  ////////
+	while(k < i){
+	printf("phrase count = %i phrase = %s\n", dictionary[k].phraseCount, dictionary[k].phraseText);
+	k++;	
 	}
-	////////////////////////////////////////////////////////
+	////////////////////////////////////
 
-	//////////////////////  compare phrases  ///////////////
-	int ret = strcmp(dictionary[0].phraseText, dictionary[1].phraseText);
-
-        if (ret == 0){
-                printf("Those phrases are the same.\n");
-	}
-	///////////////////////////////////////////////////////
 
 	return 0;
 }	
