@@ -1,9 +1,7 @@
-Hello, hahaha: this is a sample file. It contains
+Hello, hahaha: this is a (sample) file. It contains
 a number of lines, with different punctuations and
 spacings.
-We can analyze this file, breaking the input into phrases,
-and tallying them.
+We can analyze this file, breaking "the" input into phrases,
 But be careful: there are a lot of details to worry about!
-So, this is a test file.
 Also, this is a sample file.
 So, it is both! Hahaha.

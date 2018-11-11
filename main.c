@@ -30,17 +30,14 @@ int main(){
 		}
 		///////////////////////////////////////////////
 		
-		////////////  ignore specific punctuation  ////////
-		/*if (c == '(' || c == ')' || c == '\'' || c == '\"' || c == '-'){
-			i++;	
-		}*/
-		////////////////////////////////////////////////
-		
 		///////////////   start of phrase  //////////////
 		if (i==0){
 			dictionary[j].phraseText[i]='<';
-			i++;
-			dictionary[j].phraseText[i]=c;
+			if(c != ' '){
+				i++;
+				dictionary[j].phraseText[i]=c;
+				i++;
+			}
 		}
 		//////////////////////////////////////////////////
 
@@ -53,6 +50,12 @@ int main(){
 			i=0;
 		}
 		
+		////////////  ignore specific punctuation  ////////
+		else if (c == '(' || c == ')' || c == '\'' || c == '\"' || c == '-'){
+			//do nothing	
+		}
+		////////////////////////////////////////////////
+	
 		else{
 			dictionary[j].phraseText[i]=c;
 			i++;
@@ -63,11 +66,20 @@ int main(){
 	
 	dictionary[j].phraseText[i-1]='\0';
 
-
 	/////////////////////  print phrases  ///////////////////
-	while(k < j){
+	while (k < j){
 		printf("Phrase %i = %s\n", k, dictionary[k].phraseText); 
 		k++;
 	}
+	////////////////////////////////////////////////////////
+
+	//////////////////////  compare phrases  ///////////////
+	int ret = strcmp(dictionary[0].phraseText, dictionary[1].phraseText);
+
+        if (ret == 0){
+                printf("Those phrases are the same.\n");
+	}
+	///////////////////////////////////////////////////////
+
 	return 0;
 }	
