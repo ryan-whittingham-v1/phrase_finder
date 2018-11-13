@@ -5,10 +5,13 @@
 struct phrase {
 	int phraseCount;
 	char phraseText[201];
+	int length;
 };
 
 int getPhrase(char *);
 int phraseCompare(struct phrase *, char *, int);
+void phraseSort(struct phrase *, int);
+void phrasePrint(struct phrase *, int);
 
 int main(){
 
@@ -25,7 +28,7 @@ int main(){
 		c=getPhrase(tempPhrase);
 		/////////////////////////////////////
 		
-		//////////  if end of file detected  /////////////
+		//////////  stop loop if end of file detected  /////////////
 		if (c == -1){
 			break;
 		}
@@ -40,16 +43,32 @@ int main(){
 		//////  store new phrase into the dictionary  /////////
 		strcpy(dictionary[i].phraseText, tempPhrase);
 		dictionary[i].phraseCount += 1;	
-		i++; //increment dicitonary index
 		/////////////////////////////////////////////////////////
+		
+		/////////  store phrase length  //////////////////
+		dictionary[i].length = strlen(dictionary[i].phraseText);
+		//////////////////////////////////////////////////
+		
+		////////  increment dictionary index  ////////////
+		i++;
+		//////////////////////////////////////////////////
 		}
 	}	
 
+	///////////////////   sort phrases by size  ////////////////
+
+	phraseSort(dictionary, i);
+
+	///////////////////////////////////////////////////////////
+
 	/////////   print phrases  ////////
-	while(k < i){
-	printf("phrase count = %i phrase = %s\n", dictionary[k].phraseCount, dictionary[k].phraseText);
+	
+	phrasePrint(dictionary, i);
+	/*while(k < i){
+	printf("phrase count: %i phrase: %s\n", dictionary[k].phraseCount, dictionary[k].phraseText);
 	k++;	
 	}
+*/
 	////////////////////////////////////
 
 

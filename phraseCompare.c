@@ -5,6 +5,7 @@
 struct phrase {
         int phraseCount;
         char phraseText[201];
+	int length;
 };
 
 
