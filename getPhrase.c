@@ -3,60 +3,51 @@
 
 int getPhrase(char *buffer){
 
-	int i=0, c=1; 
+	int i=0;
+	char c; 
 	
-	while (c != '>'){
-
-                /////////////  get a character  ////////////////
-                c = getchar();
-                ////////////////////////////////////////////////
+	while (c != '>'){ //loop till end of phrase
 		
+                c = getchar(); //get a new character
 
-		//////////// quit if end of file  ////////////////
+		// detect if end of file 
 		if (c == EOF){
 			return -1;
 		}
-		/////////////////////////////////////////////
-
-                ///////   change to uppercase  /////////////////
-                c = toupper(c);
-                ///////////////////////////////////////////////
-
-                ///////////  Remove extra spaces  ////////////
+	
+                c = toupper(c); // convert to uppercase
+		
+                // replace \n with single space
                 if (isspace(c) > 0){
                         c = ' ';
                 }
-                ///////////////////////////////////////////////
-		
-		 ///////////////   start of phrase  //////////////
-                if (i==0){
-                        buffer[i]='<';
-                        if(c != ' '){
-                                i++;
-                                buffer[i]=c;
-                                i++;
+               
+		if (c != '(' && c != ')' && c != '\'' && c != '\"' && c != '-'){ //ignore these characters
+	
+                	if (i==0){ // if beginning of phrase
+                        	buffer[i]='<';
+				// store character if not space or special character
+                        	if (c != ' ' && c != '.' && c != ',' && c != ';' && c != ':' && c != '?' && c != '!'){
+					i++;
+					buffer[i]=c;
+					i++;
+				}
                         }
-                }
-                //////////////////////////////////////////////////
 
-                ///////////////////  end of phrase  //////////////
-                else if (c == '.' || c == ',' || c== ';' || c == ':' || c == '?' || c == '!'){
-                        c='>';
-                        buffer[i]=c;
-                        buffer[i+1]='\0';
-                 }
+			// if end of phrase
+                	else if (c == '.' || c == ',' || c == ';' || c == ':' || c == '?' || c == '!'){
+                        	if (i != 0){ // not the beginning of a phrase
+					c='>';
+                        		buffer[i]=c;
+                        		buffer[i+1]='\0'; // add null terminator
+				}
+                 	}	
 
-                ////////////  ignore specific punctuation  ////////
-                else if (c == '(' || c == ')' || c == '\'' || c == '\"' || c == '-'){
-                        //do nothing    
-                }
-                ////////////////////////////////////////////////
-
-                else{
-                        buffer[i]=c;
-                        i++;
-                }
-                //////////////////////////////////////////////////
+			else { // store regular character 
+				buffer[i]=c; 
+               		        i++;
+			}
+		}
 	}
 	return 0;
 }

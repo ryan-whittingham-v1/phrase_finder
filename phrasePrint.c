@@ -1,6 +1,4 @@
 #include<stdio.h>
-#include<ctype.h>
-#include<string.h>
 
 struct phrase {
         int phraseCount;
@@ -10,7 +8,7 @@ struct phrase {
 
 void phrasePrint(struct phrase *dic, int totalPhraseNum){
 	
-	int k =0;	
+	int k=0;	
 	while(k < totalPhraseNum){
         	printf("%05i %s\n", dic[k].phraseCount, dic[k].phraseText);
         k++;
