@@ -1,17 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-
-struct phrase {
-	int phraseCount;
-	char phraseText[201];
-	int length;
-};
-
-int getPhrase(char *);
-int phraseCompare(struct phrase *, char *, int);
-void phraseSort(struct phrase *, int);
-void phrasePrint(struct phrase *, int);
-void phraseStore(struct phrase *, char *, int);
+#include"prgm4.h"
 
 void main(){
 
@@ -19,7 +8,7 @@ void main(){
 	int i=0;
 	char tempPhrase[201];
 
-	/////////////////  Loop through file  /////////////////
+	// Loop through file
 	while (1==1){
 		
 		int c=getPhrase(tempPhrase); //get new phrase

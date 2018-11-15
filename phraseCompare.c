@@ -1,12 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-
-struct phrase {
-        int phraseCount;
-        char phraseText[201];
-	int length;
-};
-
+#include"prgm4.h"
 
 int phraseCompare(struct phrase *dic, char *temp, int totalPhraseNum){
 

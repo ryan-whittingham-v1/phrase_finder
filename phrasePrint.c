@@ -1,10 +1,5 @@
 #include<stdio.h>
-
-struct phrase {
-        int phraseCount;
-        char phraseText[201];
-        int length;
-};
+#include"prgm4.h"
 
 void phrasePrint(struct phrase *dic, int totalPhraseNum){
 	
