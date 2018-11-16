@@ -12,3 +12,6 @@ phraseCompare.o: phraseCompare.c prgm4.h
 	gcc -c phraseCompare.c
 phraseSort.o: phraseSort.c prgm4.h
 	gcc -c phraseSort.c
+clean: 
+	rm main.o getPhrase.o phrasePrint.o phraseStore.o phraseCompare.o phraseSort.o main
+
