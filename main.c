@@ -2,6 +2,21 @@
 #include<string.h>
 #include"prgm4.h"
 
+/*
+Ryan Whittingham
+CSE 224
+November 15, 2018
+Programming Assignment 4
+
+----------------------------------
+Phrase Finding and Sorting Program
+----------------------------------
+
+C program that reads text from standard-in to find, store, and sort unique phrases. Displays the sorted list of phrases along with number of occurences when finished. 
+
+*/
+
+
 void main(){
 
 	struct phrase dictionary[1000];
